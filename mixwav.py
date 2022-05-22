@@ -38,7 +38,7 @@ if len(lista_ficheros) < 2:
 else:
     #Recuperamos un fichero como inicial al que ir añadiendo el resto de pistas
     print('Fichero inicial:', lista_ficheros[0])
-    combined = AudioSegment.from_file(lista_ficheros[0])
+    combined = AudioSegment.from_file(lista_ficheros[0], format='wav')
     print('     Número de canales:', combined.channels)
     print('     Bits por Sample:', combined.sample_width * 8)
     print('     Frame rate:', combined.frame_rate)
@@ -48,7 +48,7 @@ else:
     #Recorremos el resto de ficheros 
     for file_name in lista_ficheros[1:]:
         print('Procesando el fichero:', file_name)
-        mix = AudioSegment.from_file(file_name)
+        mix = AudioSegment.from_file(file_name, format='wav')
         combined = combined.overlay(mix)
 
 combined.export(salida, format='wav')
